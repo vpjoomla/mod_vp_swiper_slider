@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='utf-8'?>
+<extension type="module" client="site" method="upgrade">
+    <name>MOD_VP_SWIPER_SLIDER</name>
+    <author>Volodymyr Pershyn</author>
+    <creationDate>2026-06-07</creationDate>
+    <copyright>Copyright (C) 2024 - 2026 VPJoomla. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>support@vpjoomla.com</authorEmail>
+    <authorUrl>https://vpjoomla.com</authorUrl>
+    <version>3.0.0</version>
+    <description>MOD_VP_SWIPER_SLIDER_XML_DESCRIPTION</description>
+    <namespace path="src">Joomla\Module\VpSwiperSlider</namespace>
+
+    <files>
+        <filename>LICENSE.txt</filename>
+        <folder module="mod_vp_swiper_slider">services</folder>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+
+    <media folder="media" destination="mod_vp_swiper_slider">
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/mod_vp_swiper_slider.ini</language>
+        <language tag="en-GB">en-GB/mod_vp_swiper_slider.sys.ini</language>
+        <language tag="ru-RU">ru-RU/mod_vp_swiper_slider.ini</language>
+        <language tag="ru-RU">ru-RU/mod_vp_swiper_slider.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic" label="MOD_VP_SWIPER_SLIDER_CONFIGURATION_SLIDER_LABEL">
+                <field name="pro_note" type="note" label="MOD_VP_SWIPER_SLIDER_PRO_NOTE_LABEL" description="MOD_VP_SWIPER_SLIDER_PRO_NOTE_DESC" class="alert alert-info" /><field name="navigation" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_NAVIGATION_LABEL" default="1" filter="integer">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="pagination" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_PAGINATION_LABEL" default="1" filter="integer">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="type_pagination" type="list" label="MOD_VP_SWIPER_SLIDER_TYPE_PAGINATION_LABEL" default="bullets" showon="pagination:1">
+                    <option value="bullets">MOD_VP_SWIPER_SLIDER_TYPE_PAGINATION_DEFAULT</option>
+                    <option value="fraction">MOD_VP_SWIPER_SLIDER_TYPE_PAGINATION_FRACTION</option>
+                    <option value="progressbar" disabled="disabled">MOD_VP_SWIPER_SLIDER_TYPE_PAGINATION_PROGRESS</option>
+                    <option value="custom" disabled="disabled">MOD_VP_SWIPER_SLIDER_TYPE_PAGINATION_CUSTOM</option>
+                </field>
+
+                <field name="space_between" type="number" label="MOD_VP_SWIPER_SLIDER_SPACE_BETWEEN_LABEL" default="20" filter="integer" />
+                <field name="slides_per_view" type="number" label="MOD_VP_SWIPER_SLIDER_SLIDES_PER_VIEW_LABEL" default="3" filter="integer" />
+                <field name="speed" type="number" label="MOD_VP_SWIPER_SLIDER_SPEED_LABEL" default="300" filter="integer" />
+
+                <field name="loop" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_LOOP_LABEL" default="0" filter="integer">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="loop_prevent_slide" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_LOOP_PREVENT_SLIDE_LABEL" default="0" filter="integer" showon="loop:1">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="grab_cursor" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_GRAB_CURSOR_LABEL" default="1" filter="integer">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="autoheight" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_AUTOHEIGHT_LABEL" default="0" filter="integer">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="rewind" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_REWIND_LABEL" default="0" filter="integer">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="rtl_mode" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_RTL_MODE_LABEL" default="0" filter="integer">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field name="autoplay" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_AUTOPLAY_LABEL" default="1" filter="integer">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="autoplay_delay" type="number" label="MOD_VP_SWIPER_SLIDER_AUTOPLAY_DELAY_LABEL" default="5000" filter="integer" showon="autoplay:1" />
+                <field name="autoplay_disable_interaction" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_AUTOPLAY_DISABLE_INTERACTION_LABEL" default="0" filter="integer" showon="autoplay:1">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="autoplay_pause_mouseenter" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_AUTOPLAY_PAUSE_MOUSEENTER_LABEL" default="0" filter="integer" showon="autoplay:1">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field name="slider_effects" type="list" label="MOD_VP_SWIPER_SLIDER_SLIDER_EFFECTS_LABEL" default="slide">
+                    <option value="slide">MOD_VP_SWIPER_SLIDER_SLIDER_EFFECTS_SLIDE</option>
+                    <option value="fade">MOD_VP_SWIPER_SLIDER_SLIDER_EFFECTS_FADE</option>
+                    <option value="cube" disabled="disabled">MOD_VP_SWIPER_SLIDER_SLIDER_EFFECTS_CUBE</option>
+                    <option value="coverflow" disabled="disabled">MOD_VP_SWIPER_SLIDER_SLIDER_EFFECTS_COVERFLOW</option>
+                    <option value="flip" disabled="disabled">MOD_VP_SWIPER_SLIDER_SLIDER_EFFECTS_FLIP</option>
+                    <option value="cards" disabled="disabled">MOD_VP_SWIPER_SLIDER_SLIDER_EFFECTS_CARDS</option>
+                    <option value="creative" disabled="disabled">MOD_VP_SWIPER_SLIDER_SLIDER_EFFECTS_CREATIVE</option>
+                </field>
+
+                <field name="cube_shadow" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_CUBE_SHADOW_LABEL" default="1" filter="integer" showon="slider_effects:cube" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="cube_slide_shadows" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_CUBE_SLIDE_SHADOWS_LABEL" default="1" filter="integer" showon="slider_effects:cube" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="cube_shadow_offset" type="number" label="MOD_VP_SWIPER_SLIDER_CUBE_SHADOW_OFFSET_LABEL" default="20" filter="integer" showon="slider_effects:cube" disabled="true" />
+                <field name="cube_shadow_scale" type="text" label="MOD_VP_SWIPER_SLIDER_CUBE_SHADOW_SCALE_LABEL" default="0.94" showon="slider_effects:cube" disabled="true" />
+
+                <field name="coverflow_rotate" type="number" label="MOD_VP_SWIPER_SLIDER_COVERFLOW_ROTATE_LABEL" default="50" filter="integer" showon="slider_effects:coverflow" disabled="true" />
+                <field name="coverflow_stretch" type="number" label="MOD_VP_SWIPER_SLIDER_COVERFLOW_STRETCH_LABEL" default="0" filter="integer" showon="slider_effects:coverflow" disabled="true" />
+                <field name="coverflow_depth" type="number" label="MOD_VP_SWIPER_SLIDER_COVERFLOW_DEPTH_LABEL" default="100" filter="integer" showon="slider_effects:coverflow" disabled="true" />
+                <field name="coverflow_modifier" type="number" label="MOD_VP_SWIPER_SLIDER_COVERFLOW_MODIFIER_LABEL" default="1" filter="integer" showon="slider_effects:coverflow" disabled="true" />
+                <field name="coverflow_slide_shadows" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_COVERFLOW_SLIDE_SHADOWS_LABEL" default="1" filter="integer" showon="slider_effects:coverflow" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field name="grid" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_GRID_LABEL" default="0" filter="integer" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="grid_rows" type="number" label="MOD_VP_SWIPER_SLIDER_GRID_ROWS_LABEL" default="2" filter="integer" showon="grid:1" disabled="true" />
+
+                <field name="keyboard_control" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_KEYBOARD_CONTROL_LABEL" default="0" filter="integer" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="mousewheel_control" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_MOUSEWHEEL_CONTROL_LABEL" default="0" filter="integer" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="zoom" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_ZOOM_LABEL" default="0" filter="integer" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="parallax" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_PARALLAX_LABEL" default="0" filter="integer" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="hash_navigation" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_HASH_NAVIGATION_LABEL" default="0" filter="integer" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="history" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_HISTORY_LABEL" default="0" filter="integer" disabled="true">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field name="ordering" type="list" label="MOD_VP_SWIPER_SLIDER_SORTING" default="desc">
+                    <option value="asc">MOD_VP_SWIPER_SLIDER_SORTING_ASC</option>
+                    <option value="desc">MOD_VP_SWIPER_SLIDER_SORTING_DESC</option>
+                </field>
+            </fieldset>
+
+            <fieldset name="slide_source" label="MOD_VP_SWIPER_SLIDER_SLIDE_SOURCE_LABEL">
+                <field name="source_type" type="list" label="MOD_VP_SWIPER_SLIDER_SOURCE" default="0" filter="integer" validate="options">
+                    <option value="0">MOD_VP_SWIPER_SLIDER_SOURCE_CUSTOM</option>
+                    <option value="2">MOD_VP_SWIPER_SLIDER_SOURCE_SLIDER</option>
+                    <option value="4">MOD_VP_SWIPER_SLIDER_SOURCE_ROTY</option>
+                    <option value="1" disabled="disabled">MOD_VP_SWIPER_SLIDER_SOURCE_VENDORS</option>
+                    <option value="3" disabled="disabled">MOD_VP_SWIPER_SLIDER_SOURCE_ARTICLES</option>
+                </field>
+
+                <field name="custom_code" type="textarea" label="MOD_VP_SWIPER_SLIDER_CUSTOM_CODE" default="" showon="source_type:0" filter="raw" rows="10" />
+
+                <field name="slider" type="subform" label="MOD_VP_SWIPER_SLIDER_SLIDER_LABEL" multiple="true" min="1" showon="source_type:2">
+                    <form>
+                        <field name="slider_image" type="media" label="MOD_VP_SWIPER_SLIDER_SLIDER_IMAGE" />
+                        <field name="slider_title" type="text" label="MOD_VP_SWIPER_SLIDER_SLIDER_TITLE" />
+                        <field name="slider_text" type="text" label="MOD_VP_SWIPER_SLIDER_SLIDER_TEXT" />
+                        <field name="slider_button" type="text" label="MOD_VP_SWIPER_SLIDER_SLIDER_BUTTON" />
+                        <field name="slider_link" type="url" label="MOD_VP_SWIPER_SLIDER_SLIDER_LINK" />
+                    </form>
+                </field>
+
+                <field name="roty" type="subform" label="MOD_VP_SWIPER_SLIDER_IMAGE_LABEL" multiple="true" min="1" showon="source_type:4">
+                    <form>
+                        <field name="image_image" type="media" label="MOD_VP_SWIPER_SLIDER_IMAGE_IMAGE" />
+                        <field name="image_link" type="url" label="MOD_VP_SWIPER_SLIDER_IMAGE_LINK" />
+                        <field name="image_title" type="text" label="MOD_VP_SWIPER_SLIDER_IMAGE_TITLE" />
+                        <field name="image_text" type="textarea" filter="raw" label="MOD_VP_SWIPER_SLIDER_IMAGE_TEXT" />
+                    </form>
+                </field>
+
+                <field name="vendors" type="subform" label="MOD_VP_SWIPER_SLIDER_VENDORS_LABEL" multiple="true" min="1" showon="source_type:1" disabled="true">
+                    <form>
+                        <field name="vendor_image" type="media" label="MOD_VP_SWIPER_SLIDER_VENDORS_IMAGE" />
+                        <field name="vendor_alt" type="text" label="MOD_VP_SWIPER_SLIDER_VENDORS_ALT" />
+                        <field name="vendor_image_width" type="number" filter="integer" label="MOD_VP_SWIPER_SLIDER_VENDORS_IMAGE_WIDTH" />
+                        <field name="vendor_image_height" type="number" filter="integer" label="MOD_VP_SWIPER_SLIDER_VENDORS_IMAGE_HEIGHT" />
+                    </form>
+                </field>
+
+                <field name="catid" type="category" label="JCATEGORY" extension="com_content" multiple="true" layout="joomla.form.field.list-fancy-select" filter="intarray" class="multipleCategories" showon="source_type:3" disabled="true" />
+                <field name="count" type="number" label="MOD_VP_SWIPER_SLIDER_ARTICLES_COUNT_LABEL" default="3" filter="integer" showon="source_type:3" disabled="true" />
+                <field name="article_image" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_ARTICLES_IMAGE_LABEL" default="1" filter="integer" showon="source_type:3" disabled="true">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="article_title" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_ARTICLES_TITLE_LABEL" default="1" filter="integer" showon="source_type:3" disabled="true">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="article_introtext" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_ARTICLES_INTROTEXT_LABEL" default="1" filter="integer" showon="source_type:3" disabled="true">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="readmore" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_VP_SWIPER_SLIDER_ARTICLES_READ_MORE_LABEL" default="0" filter="integer" showon="source_type:3" disabled="true">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+            </fieldset>
+
+            <fieldset name="slide_breakpoints" label="MOD_VP_SWIPER_SLIDER_BREAKPOINTS_LABEL">
+                <field name="breakpoints" type="subform" label="MOD_VP_SWIPER_SLIDER_BREAKPOINTS_LABEL" multiple="true" min="0">
+                    <form>
+                        <field name="bp_size" type="number" filter="integer" label="MOD_VP_SWIPER_SLIDER_SCREEN_SIZE" />
+                        <field name="bp_perview" type="number" filter="integer" label="MOD_VP_SWIPER_SLIDER_PER_VIEW" />
+                        <field name="bp_space" type="number" filter="integer" label="MOD_VP_SWIPER_SLIDER_SPACE_BETWEEN" />
+                    </form>
+                </field>
+            </fieldset>
+
+            <fieldset name="advanced">
+                <field name="moduleclass_sfx" type="textarea" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" rows="3" validate="CssIdentifier" />
+                <field name="cache" type="list" label="COM_MODULES_FIELD_CACHING_LABEL" default="1" filter="integer" validate="options">
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+                <field name="cache_time" type="number" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" default="900" filter="integer" />
+                <field name="cachemode" type="hidden" default="itemid">
+                    <option value="itemid" />
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+    <updateservers>
+        <server type="extension" priority="1" name="VP Swiper Slider">https://vpjoomla.com/updates/vp-swiper-slider/update.xml</server>
+    </updateservers>
+</extension>

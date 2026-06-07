@@ -1,0 +1,414 @@
+/**
+ * VP Swiper Slider — theme styles
+ *
+ * @package    mod_vp_swiper_slider_pro
+ * @copyright  Copyright (C) 2024 - 2026 VPJoomla. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ *
+ * Intentionally neutral. These styles give the slide layouts a clean,
+ * sensible default that integrates with most templates and is trivial to
+ * override. All tunables are exposed as CSS custom properties on the wrapper.
+ */
+
+.vp-swiper-wrapper-outer {
+    --vp-swiper-accent: var(--swiper-theme-color, #2563eb);
+    --vp-swiper-radius: 10px;
+    --vp-swiper-gap: 1rem;
+    --vp-swiper-text: #1f2937;
+    --vp-swiper-text-muted: #6b7280;
+    --vp-swiper-surface: #ffffff;
+    --vp-swiper-overlay: rgba(17, 24, 39, 0.45);
+
+    position: relative;
+    width: 100%;
+}
+
+/* Swiper needs the theme color too; map it to our accent. */
+.vp-swiper-wrapper-outer .vp-swiper {
+    --swiper-theme-color: var(--vp-swiper-accent);
+    --swiper-navigation-size: 18px;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Navigation arrows — circular backing + clean SVG chevron                */
+/* ----------------------------------------------------------------------- */
+.vp-swiper-wrapper-outer .swiper-button-next,
+.vp-swiper-wrapper-outer .swiper-button-prev {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.95);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 38%;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.22);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hide Swiper's built-in icon. v11 used a font glyph in ::after; v12 injects
+   an inline <svg class="swiper-navigation-icon">. Cover both so only our own
+   chevron (the button background) shows. */
+.vp-swiper-wrapper-outer .swiper-button-next::after,
+.vp-swiper-wrapper-outer .swiper-button-prev::after {
+    content: none;
+}
+
+.vp-swiper-wrapper-outer .swiper-button-next .swiper-navigation-icon,
+.vp-swiper-wrapper-outer .swiper-button-prev .swiper-navigation-icon {
+    display: none;
+}
+
+/* Inline SVG chevrons, tinted with the accent colour. */
+.vp-swiper-wrapper-outer .swiper-button-prev {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 6 9 12 15 18'/%3E%3C/svg%3E");
+}
+
+.vp-swiper-wrapper-outer .swiper-button-next {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 6 15 12 9 18'/%3E%3C/svg%3E");
+}
+
+.vp-swiper-wrapper-outer .swiper-button-next:hover,
+.vp-swiper-wrapper-outer .swiper-button-prev:hover {
+    background-color: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.28);
+}
+
+.vp-swiper-wrapper-outer .swiper-button-disabled {
+    opacity: 0.35;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Slider source (image + title + text + button)                           */
+/* ----------------------------------------------------------------------- */
+.vp-slide {
+    display: block;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--vp-swiper-radius);
+    color: inherit;
+    text-decoration: none;
+    background: var(--vp-swiper-surface);
+}
+
+.vp-slide-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.vp-slide-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.vp-slide:hover .vp-slide-image img {
+    transform: scale(1.04);
+}
+
+.vp-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--vp-swiper-overlay), transparent 60%);
+    pointer-events: none;
+}
+
+.vp-slide-content {
+    padding: 1rem 1.25rem;
+}
+
+/* When there is an image, overlay the content on top of it. */
+.vp-slide-image + .vp-slide-content {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    color: #fff;
+    padding: 1.25rem;
+}
+
+.vp-slide-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
+}
+
+.vp-slide-text {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: inherit;
+    opacity: 0.92;
+}
+
+.vp-slide-button {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    background: var(--vp-swiper-accent);
+    border-radius: calc(var(--vp-swiper-radius) - 4px);
+    transition: opacity 0.2s ease;
+}
+
+.vp-slide:hover .vp-slide-button {
+    opacity: 0.9;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Image source                                                            */
+/* ----------------------------------------------------------------------- */
+.vp-image-block {
+    text-align: center;
+}
+
+.vp-image-content {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.vp-image-content img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--vp-swiper-radius);
+}
+
+.vp-image-block-text {
+    margin-top: 0.75rem;
+}
+
+.vp-image-block-text h4 {
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+    color: var(--vp-swiper-text);
+}
+
+.vp-image-block-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--vp-swiper-text-muted);
+}
+
+/* ----------------------------------------------------------------------- */
+/* Vendors source (logos)                                                  */
+/* ----------------------------------------------------------------------- */
+.vp-vendor-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1rem;
+}
+
+.vp-vendor-image img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.25s ease, opacity 0.25s ease;
+}
+
+.vp-vendor-slide:hover .vp-vendor-image img {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Articles source                                                         */
+/* ----------------------------------------------------------------------- */
+.vp-article-slide {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    background: var(--vp-swiper-surface);
+    border-radius: var(--vp-swiper-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.vp-article-slide:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.vp-article-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.vp-article-title {
+    padding: 0.85rem 1rem 0.4rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--vp-swiper-text);
+}
+
+.vp-swiper-wrapper-outer .vp-article-slide .vp-article-text {
+    padding: 0 1rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--vp-swiper-text-muted);
+
+    /* Reset any template-level text-fade tricks (mask gradients, ellipsis on
+       block elements, max-height etc.) that conflict with -webkit-line-clamp.
+       Then enforce a clean line clamp on the intro so a single long article
+       doesn't blow up the row height. */
+    text-overflow: clip !important;
+    -webkit-mask-image: none !important;
+            mask-image: none !important;
+    max-height: none !important;
+
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: var(--vp-article-clamp, 4) !important;
+            line-clamp: var(--vp-article-clamp, 4) !important;
+    overflow: hidden !important;
+}
+
+/* Joomla's content.prepare wraps the introtext in a <p>, so the clamp on the
+   .vp-article-text div alone wouldn't catch text that overflows the inner
+   <p>. Strip the inner <p>'s default block formatting so it inherits the
+   parent's -webkit-box clamp behaviour. */
+.vp-swiper-wrapper-outer .vp-article-slide .vp-article-text > p {
+    display: inline !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.vp-article-readmore {
+    margin-top: auto;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--vp-swiper-accent);
+}
+
+/* "View all" link below the articles slider. */
+.vp-swiper-all-news {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--vp-swiper-accent);
+    text-decoration: none;
+}
+
+.vp-swiper-all-news:hover {
+    text-decoration: underline;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Article cards — equal-height across the carousel.                       */
+/* The .swiper-slide must stretch to the tallest card so all cards align;  */
+/* .vp-article-slide already uses flex-column + margin-top:auto on the     */
+/* "Read more" link, so once the slide stretches the link locks to the     */
+/* bottom of every card.                                                   */
+/* ----------------------------------------------------------------------- */
+.vp-swiper-wrapper-outer .swiper-wrapper:not(.vp-swiper-image-row) .swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+.vp-swiper-wrapper-outer .swiper-wrapper:not(.vp-swiper-image-row) .swiper-slide > .vp-article-slide {
+    width: 100%;
+}
+
+/* When the slider is a card carousel (Articles), the cards are tall but the
+   image sits at the top. Anchor the nav arrows at image level instead of the
+   geometric centre of the slide, so they don't overlap the title or body.
+   The class selector is set by JS for older browsers; :has() works in all
+   modern ones. */
+.vp-swiper-wrapper-outer.vp-has-article-cards .swiper-button-prev,
+.vp-swiper-wrapper-outer.vp-has-article-cards .swiper-button-next,
+.vp-swiper-wrapper-outer:has(.vp-article-slide) .swiper-button-prev,
+.vp-swiper-wrapper-outer:has(.vp-article-slide) .swiper-button-next {
+    top: 110px;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Image-row layout helper (auto-width slides)                             */
+/* ----------------------------------------------------------------------- */
+.swiper-wrapper.vp-swiper-image-row .swiper-slide {
+    height: auto;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Pagination — clean dots, with a wider active pill                        */
+/* ----------------------------------------------------------------------- */
+.vp-swiper-wrapper-outer .swiper-pagination {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.vp-swiper-wrapper-outer .swiper-pagination-bullet {
+    width: 9px;
+    height: 9px;
+    background: var(--vp-swiper-accent);
+    opacity: 0.3;
+    transition: opacity 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
+}
+
+.vp-swiper-wrapper-outer .swiper-pagination-bullet-active {
+    opacity: 1;
+    width: 26px;
+    border-radius: 5px;
+}
+
+/* Fraction pagination: keep it legible and unobtrusive. */
+.vp-swiper-wrapper-outer .swiper-pagination-fraction {
+    color: var(--vp-swiper-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Thumbnail strip (Pro) — pairs with the main slider via Swiper Thumbs.   */
+/* ----------------------------------------------------------------------- */
+.vp-swiper-wrapper-outer .vp-swiper-thumbs {
+    margin-top: 12px;
+    height: var(--vp-thumb-height, 80px);
+    overflow: hidden;
+}
+
+.vp-swiper-wrapper-outer .vp-swiper-thumbs .swiper-slide {
+    width: auto;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0.45;
+    border: 2px solid transparent;
+    transition: opacity 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    background: #f1f5f9;
+}
+
+.vp-swiper-wrapper-outer .vp-swiper-thumbs .swiper-slide:hover {
+    opacity: 0.85;
+}
+
+.vp-swiper-wrapper-outer .vp-swiper-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+    border-color: var(--vp-swiper-accent);
+    transform: translateY(-1px);
+}
+
+.vp-swiper-wrapper-outer .vp-swiper-thumbs .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
